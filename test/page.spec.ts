@@ -1216,7 +1216,7 @@ describe('Page', function () {
     });
   });
 
-  describe('Page.addScriptTag', function () {
+  describeFailsFirefox('Page.addScriptTag', function () {
     it('should throw an error if no options are provided', async () => {
       const { page } = getTestState();
 
