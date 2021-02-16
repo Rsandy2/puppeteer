@@ -44,7 +44,7 @@ jobs:
         env:
           FIREFOX: true
         run: |
-          xvfb-run --auto-servernum npm run funit
+          MOZ_WEBRENDER=0 xvfb-run --auto-servernum npm run funit
 
       - name: Run code checks
         run: |
