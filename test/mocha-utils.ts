@@ -215,6 +215,7 @@ console.log(
     path.relative(process.cwd(), puppeteer.executablePath())
   }`
 );
+
 export const setupTestBrowserHooks = () => {
   before(async () => {
     const browser = await puppeteer.launch(defaultBrowserOptions);

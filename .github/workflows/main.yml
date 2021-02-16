@@ -40,12 +40,6 @@ jobs:
         run: |
           npm run build
 
-      - name: Run unit tests on Firefox
-        env:
-          FIREFOX: true
-        run: |
-          MOZ_WEBRENDER=0 xvfb-run --auto-servernum npm run funit
-
       - name: Run code checks
         run: |
           npm run lint
@@ -66,6 +60,12 @@ jobs:
           xvfb-run --auto-servernum npm run unit-with-coverage
           xvfb-run --auto-servernum npm run assert-unit-coverage
 
+      - name: Run unit tests on Firefox
+        env:
+          FIREFOX: true
+          MOZ_WEBRENDER: 0
+        run: |
+          xvfb-run --auto-servernum npm run funit
       - name: Run browser tests
         run: |
           npm run test-browser

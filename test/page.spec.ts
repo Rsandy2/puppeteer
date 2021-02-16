@@ -1216,7 +1216,7 @@ describe('Page', function () {
     });
   });
 
-  describeFailsFirefox('Page.addScriptTag', function () {
+  describe('Page.addScriptTag', function () {
     it('should throw an error if no options are provided', async () => {
       const { page } = getTestState();
 
@@ -1345,7 +1345,7 @@ describe('Page', function () {
     });
   });
 
-  describeFailsFirefox('Page.addStyleTag', function () {
+  describe('Page.addStyleTag', function () {
     it('should throw an error if no options are provided', async () => {
       const { page } = getTestState();
 

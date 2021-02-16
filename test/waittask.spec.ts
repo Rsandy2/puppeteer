@@ -22,7 +22,6 @@ import {
   setupTestBrowserHooks,
   setupTestPageAndContextHooks,
   itFailsFirefox,
-  describeFailsFirefox,
 } from './mocha-utils'; // eslint-disable-line import/extensions
 
 describe('waittask specs', function () {
@@ -385,7 +384,7 @@ describe('waittask specs', function () {
     });
   });
 
-  describeFailsFirefox('Frame.waitForSelector', function () {
+  describe('Frame.waitForSelector', function () {
     const addElement = (tag) =>
       document.body.appendChild(document.createElement(tag));
 
