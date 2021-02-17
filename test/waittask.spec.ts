@@ -398,7 +398,7 @@ describe('waittask specs', function () {
       await frame.waitForSelector('div');
     });
 
-    it('should work with removed MutationObserver', async () => {
+    itFailsFirefox('should work with removed MutationObserver', async () => {
       const { page } = getTestState();
 
       await page.evaluate(() => delete window.MutationObserver);
@@ -439,20 +439,23 @@ describe('waittask specs', function () {
       await watchdog;
     });
 
-    it('Page.waitForSelector is shortcut for main frame', async () => {
-      const { page, server } = getTestState();
+    itFailsFirefox(
+      'Page.waitForSelector is shortcut for main frame',
+      async () => {
+        const { page, server } = getTestState();
 
-      await page.goto(server.EMPTY_PAGE);
-      await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
-      const otherFrame = page.frames()[1];
-      const watchdog = page.waitForSelector('div');
-      await otherFrame.evaluate(addElement, 'div');
-      await page.evaluate(addElement, 'div');
-      const eHandle = await watchdog;
-      expect(eHandle.executionContext().frame()).toBe(page.mainFrame());
-    });
+        await page.goto(server.EMPTY_PAGE);
+        await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
+        const otherFrame = page.frames()[1];
+        const watchdog = page.waitForSelector('div');
+        await otherFrame.evaluate(addElement, 'div');
+        await page.evaluate(addElement, 'div');
+        const eHandle = await watchdog;
+        expect(eHandle.executionContext().frame()).toBe(page.mainFrame());
+      }
+    );
 
-    it('should run in specified frame', async () => {
+    itFailsFirefox('should run in specified frame', async () => {
       const { page, server } = getTestState();
 
       await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
@@ -466,7 +469,7 @@ describe('waittask specs', function () {
       expect(eHandle.executionContext().frame()).toBe(frame2);
     });
 
-    it('should throw when frame is detached', async () => {
+    itFailsFirefox('should throw when frame is detached', async () => {
       const { page, server } = getTestState();
 
       await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
@@ -690,7 +693,7 @@ describe('waittask specs', function () {
       );
       expect(error).toBeInstanceOf(puppeteer.errors.TimeoutError);
     });
-    it('should run in specified frame', async () => {
+    itFailsFirefox('should run in specified frame', async () => {
       const { page, server } = getTestState();
 
       await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
@@ -703,7 +706,7 @@ describe('waittask specs', function () {
       const eHandle = await waitForXPathPromise;
       expect(eHandle.executionContext().frame()).toBe(frame2);
     });
-    it('should throw when frame is detached', async () => {
+    itFailsFirefox('should throw when frame is detached', async () => {
       const { page, server } = getTestState();
 
       await utils.attachFrame(page, 'frame1', server.EMPTY_PAGE);
